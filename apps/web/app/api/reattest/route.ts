@@ -75,10 +75,7 @@ export async function POST(request: Request): Promise<Response> {
           throw new Refused("It was already renewed; look it up again.", 409);
         }
         if (/not\s+(?:yet\s+)?expired|unexpired/i.test(circleMessage)) {
-          throw new Refused(
-            "This attestation has not expired, so it does not need renewing.",
-            422,
-          );
+          throw new Refused("This attestation has not expired, so it does not need renewing.", 422);
         }
         throw new Refused("Circle could not renew this attestation.", 422);
       }
